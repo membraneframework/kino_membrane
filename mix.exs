@@ -6,7 +6,7 @@ defmodule Membrane.Template.Mixfile do
 
   def project do
     [
-      app: :membrane_template_plugin,
+      app: :membrane_kino_dashboard,
       version: @version,
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -36,7 +36,7 @@ defmodule Membrane.Template.Mixfile do
 
   defp deps do
     [
-      {:membrane_core, "~> 0.10.0"},
+      {:membrane_core, path: "../membrane_core"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, ">= 0.0.0", only: :dev, runtime: false}

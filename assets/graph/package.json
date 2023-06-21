@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "esbuild src/* --bundle --outfile=../../priv/graph.js"
+  },
+  "dependencies": {
+    "cytoscape-expand-collapse": "^4.1.0",
+    "cytoscape-fcose": "^2.2.0",
+    "esbuild": "0.17.11"
+  }
+}
