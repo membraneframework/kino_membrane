@@ -2,10 +2,11 @@ defmodule Membrane.Kino.PipelineTree do
   use Kino.JS
   use Kino.JS.Live
 
-  alias Membrane.Kino.{ComponentInfo, JSUtils}
+  alias Membrane.Kino.ComponentInfo
 
-  @tree_view_path Path.join(:code.priv_dir(:membrane_kino_dashboard), "tree_view.js")
-  @external_resource @tree_view_path
+  require Membrane.Kino.JSUtils, as: JSUtils
+
+  @tree_view_js JSUtils.precompiled_asset("assets/precompiled/tree_view.js")
 
   def new(pipeline, opts \\ []) do
     Kino.JS.Live.new(__MODULE__, {pipeline, opts})
@@ -64,7 +65,7 @@ defmodule Membrane.Kino.PipelineTree do
   end
 
   asset "tree_view.js" do
-    File.read!(@tree_view_path)
+    @tree_view_js
   end
 
   asset "main.js" do

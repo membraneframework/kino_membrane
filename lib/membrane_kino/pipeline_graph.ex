@@ -6,8 +6,7 @@ defmodule Membrane.Kino.PipelineGraph do
 
   require Membrane.Kino.JSUtils, as: JSUtils
 
-  @graph_path Path.join(:code.priv_dir(:membrane_kino_dashboard), "graph.js")
-  @external_resource @graph_path
+  @graph_js JSUtils.precompiled_asset("assets/precompiled/graph.js")
 
   def new(pipeline, opts \\ []) do
     Kino.JS.Live.new(__MODULE__, {pipeline, opts})
@@ -81,7 +80,7 @@ defmodule Membrane.Kino.PipelineGraph do
   end
 
   asset "graph.js" do
-    File.read!(@graph_path)
+    @graph_js
   end
 
   asset "main.js" do
