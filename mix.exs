@@ -36,7 +36,7 @@ defmodule Membrane.Kino.Dashboard.Mixfile do
 
   defp deps do
     [
-      {:membrane_core, github: "membraneframework/membrane_core", branch: "dashboard-v0.12"},
+      {:membrane_core, github: "membraneframework/membrane_core", branch: "dashboard-0.12"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, ">= 0.0.0", only: :dev, runtime: false}
@@ -63,10 +63,7 @@ defmodule Membrane.Kino.Dashboard.Mixfile do
       links: %{
         "GitHub" => @github_url,
         "Membrane Framework Homepage" => "https://membraneframework.org"
-      },
-      files:
-        Path.wildcard("assets/**/*.{js,jsx,ts,tsx,json,fingerprint}") ++
-          ~w(lib LICENSE mix.exs README.md .formatter.exs)
+      }
     ]
   end
 

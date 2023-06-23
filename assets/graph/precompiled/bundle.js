@@ -36393,7 +36393,7 @@
     }
   });
 
-  // src/app.js
+  // src/graph.js
   var import_cytoscape = __toESM(require_cytoscape_cjs());
   var import_cytoscape_fcose = __toESM(require_cytoscape_fcose());
   var import_cytoscape_expand_collapse = __toESM(require_cytoscape_expand_collapse());

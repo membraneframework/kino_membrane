@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "esbuild src/* --bundle --outfile=../precompiled/tree_view.js &&  ../calc_fingerprint.sh src ../precompiled/tree_view.js > ../precompiled/tree_view.js.fingerprint"
+    "build": "esbuild src/* --bundle --outfile=precompiled/bundle.js &&  ../calc_fingerprint.sh precompiled/bundle.js src package.json package-lock.json"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",

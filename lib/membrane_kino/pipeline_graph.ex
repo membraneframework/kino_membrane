@@ -20,7 +20,7 @@ defmodule Membrane.Kino.PipelineGraph do
 
   alias Membrane.Kino.ComponentInfo
 
-  @graph_js JSUtils.precompiled_asset("assets/precompiled/graph.js")
+  @graph_js JSUtils.precompiled_asset("assets/graph/", "precompiled/bundle.js")
 
   @spec new(pipeline :: pid, component_info: ComponentInfo.t()) :: Kino.Render.t()
   def new(pipeline, opts \\ []) do
@@ -95,7 +95,7 @@ defmodule Membrane.Kino.PipelineGraph do
   end
 
   asset "graph.js" do
-    @graph_js
+    File.read!(@graph_js)
   end
 
   asset "main.js" do

@@ -13,7 +13,7 @@ defmodule Membrane.Kino.PipelineTree do
 
   alias Membrane.Kino.ComponentInfo
 
-  @tree_view_js JSUtils.precompiled_asset("assets/precompiled/tree_view.js")
+  @tree_view_js JSUtils.precompiled_asset("assets/tree_view/", "precompiled/bundle.js")
 
   @spec new(pipeline :: pid, component_info: ComponentInfo.t()) :: Kino.Render.t()
   def new(pipeline, opts \\ []) do
@@ -73,7 +73,7 @@ defmodule Membrane.Kino.PipelineTree do
   end
 
   asset "tree_view.js" do
-    @tree_view_js
+    File.read!(@tree_view_js)
   end
 
   asset "main.js" do

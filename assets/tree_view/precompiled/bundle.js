@@ -56831,7 +56831,7 @@ Please use another name.` : (0, _utils.formatMuiErrorMessage)(18));
     }
   });
 
-  // src/app.tsx
+  // src/tree_view.tsx
   var React15 = __toESM(require_react());
   var import_react6 = __toESM(require_react());
   var import_client = __toESM(require_client());
@@ -58529,7 +58529,7 @@ Please use another name.` : (0, import_utils.formatMuiErrorMessage)(18));
   } : void 0;
   var TreeView_default = TreeView;
 
-  // src/app.tsx
+  // src/tree_view.tsx
   var import_ExpandMore = __toESM(require_ExpandMore());
   var import_ChevronRight = __toESM(require_ChevronRight());
 
@@ -59975,7 +59975,7 @@ Please use another name.` : (0, import_utils.formatMuiErrorMessage)(18));
   } : void 0;
   var TreeItem_default = TreeItem;
 
-  // src/app.tsx
+  // src/tree_view.tsx
   var RenderTree = ({ node: node2, onClick }) => {
     const handleClick = (0, import_react6.useCallback)((_event) => {
       onClick(node2);
