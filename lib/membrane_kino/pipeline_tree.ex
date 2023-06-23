@@ -1,13 +1,21 @@
 defmodule Membrane.Kino.PipelineTree do
+  @moduledoc """
+  Pipeline tree is a simple tree view that allows to explore a pipeline in a parent-child manner.
+
+  By default it shows top-level elements and bins, and once you click on a bin it reveals its children.
+  Clicking on an element reveals it in a component info view below the tree.
+  """
+
   use Kino.JS
   use Kino.JS.Live
 
-  alias Membrane.Kino.ComponentInfo
-
   require Membrane.Kino.JSUtils, as: JSUtils
+
+  alias Membrane.Kino.ComponentInfo
 
   @tree_view_js JSUtils.precompiled_asset("assets/precompiled/tree_view.js")
 
+  @spec new(pipeline :: pid, component_info: ComponentInfo.t()) :: Kino.Render.t()
   def new(pipeline, opts \\ []) do
     Kino.JS.Live.new(__MODULE__, {pipeline, opts})
   end

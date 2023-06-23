@@ -1,10 +1,19 @@
 defmodule Membrane.Kino.ComponentInfo do
+  @moduledoc """
+  Kino that displays information about a Membrane component.
+
+  It shows the component path, pads, charts with metrics and more -
+  better check it yourself by clicking an element on the `Membrane.Kino.PipelineGraph`
+  or `Membrane.Kino.PipelineTree`.
+
+  Currently it supports elements only.
+  """
   use GenServer
+
+  require Membrane.Pad, as: Pad
 
   alias Membrane.Kino.JSUtils
   alias VegaLite, as: Vl
-
-  require Membrane.Pad, as: Pad
 
   @nothing Kino.Markdown.new("")
 
@@ -16,14 +25,19 @@ defmodule Membrane.Kino.ComponentInfo do
     def to_livebook(%{frame: frame}), do: Kino.Render.to_livebook(frame)
   end
 
+  @type t :: Kino.Render.t()
+
+  @spec new(pipeline :: pid()) :: t
   def new(pipeline) do
     frame = empty_frame()
     {:ok, pid} = GenServer.start_link(__MODULE__, {frame, pipeline})
     %__MODULE__{pid: pid, frame: frame}
   end
 
+  @spec set_component(t, Membrane.ComponentPath.path()) :: :ok
   def set_component(%__MODULE__{pid: pid}, component_path) do
     send(pid, {:set_component, component_path})
+    :ok
   end
 
   @impl true

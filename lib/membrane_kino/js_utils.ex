@@ -57,6 +57,7 @@ defmodule Membrane.Kino.JSUtils do
     end
   end
 
+  @spec serialize_label(term) :: String.t()
   def serialize_label(label) do
     label = if String.valid?(label), do: label, else: inspect(label)
     label = String.replace(label, ~w(" @ \ / < >), "")
@@ -68,10 +69,12 @@ defmodule Membrane.Kino.JSUtils do
     end
   end
 
+  @spec serialize_term(term) :: String.t()
   def serialize_term(term) do
     term |> :erlang.term_to_binary() |> Base.encode64()
   end
 
+  @spec parse_term(String.t()) :: term
   def parse_term(data) do
     data |> Base.decode64!() |> :erlang.binary_to_term()
   end

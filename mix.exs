@@ -1,8 +1,8 @@
-defmodule Membrane.Template.Mixfile do
+defmodule Membrane.Kino.Dashboard.Mixfile do
   use Mix.Project
 
   @version "0.1.0"
-  @github_url "https://github.com/membraneframework/membrane_template_plugin"
+  @github_url "https://github.com/membraneframework/membrane_kino_dashboard"
 
   def project do
     [
@@ -15,11 +15,11 @@ defmodule Membrane.Template.Mixfile do
       dialyzer: dialyzer(),
 
       # hex
-      description: "Template Plugin for Membrane Multimedia Framework",
+      description: "Dashboard for introspecting Membrane pipelines",
       package: package(),
 
       # docs
-      name: "Membrane Template plugin",
+      name: "Membrane Kino dashboard",
       source_url: @github_url,
       docs: docs()
     ]
@@ -36,7 +36,7 @@ defmodule Membrane.Template.Mixfile do
 
   defp deps do
     [
-      {:membrane_core, path: "../membrane_core"},
+      {:membrane_core, github: "membraneframework/membrane_core", branch: "dashboard-v0.12"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, ">= 0.0.0", only: :dev, runtime: false}
@@ -63,14 +63,18 @@ defmodule Membrane.Template.Mixfile do
       links: %{
         "GitHub" => @github_url,
         "Membrane Framework Homepage" => "https://membraneframework.org"
-      }
+      },
+      files:
+        Path.wildcard("assets/**/*.{js,jsx,ts,tsx,json,fingerprint}") ++
+          ~w(lib LICENSE mix.exs README.md .formatter.exs)
     ]
   end
 
   defp docs do
     [
       main: "readme",
-      extras: ["README.md", "LICENSE"],
+      extras: ["README.md", "LICENSE"] ++ Path.wildcard("examples/**"),
+      groups_for_extras: [Examples: ~r/examples\/*/],
       formatters: ["html"],
       source_ref: "v#{@version}",
       nest_modules_by_prefix: [Membrane.Template]

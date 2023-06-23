@@ -1,0 +1,46 @@
+# Connect to node - dashboard example
+
+```elixir
+Mix.install([
+  :membrane_kino_dashboard
+])
+```
+
+## Dashboard
+
+To be able to connect to a running node, it should be started in the distributed mode. For example, instead of
+
+```sh
+mix phx.server
+```
+
+type
+
+```sh
+elixir --sname sid --cookie monster -S mix phx.server
+```
+
+Then, you can connect to the node with the following code:
+
+```elixir
+# If the node is not running locally, provide the its hostname instead
+{:ok, hostname} = :inet.gethostname()
+node = :"sid@#{hostname}"
+Node.set_cookie(node, :monster)
+status = Node.connect(node)
+
+if status == false do
+  raise "Couldn't connect to the node #{inspect(node)}"
+end
+
+:ok
+```
+
+Now you can show a dashboard for a pipeline running on the node. The snippet below lists all the running pipelines and displays the dashboard for one of them.
+
+```elixir
+case Membrane.Pipeline.list_pipelines(node) do
+  [pipeline | _pipelines] -> Membrane.Kino.pipeline_dashboard(pipeline)
+  [] -> raise "No running pipelines found in the node #{inspect(node)}"
+end
+```

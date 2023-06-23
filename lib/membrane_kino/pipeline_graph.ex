@@ -1,13 +1,28 @@
 defmodule Membrane.Kino.PipelineGraph do
+  @moduledoc """
+  Displays a graph of the given pipeline.
+
+  The graph allows to:
+
+    - Zoom in/out using mouse scroll (after clicking the graph at least once)
+    - Expand bins (the green squares) by either clicking + or double tapping (this will zoom in to fit the expanded bin as well)
+    - Move components when holding Alt/Option
+    - Select multiple components when holding Shift
+    - If the layout is not readable enough, clicking Refresh layout may help
+    - Clicking on a component reveals it in a component info view below the graph
+    - Clicking the zoom (+) button of the Livebook cell extends the graph to cover full page width
+
+  """
   use Kino.JS
   use Kino.JS.Live
 
-  alias Membrane.Kino.ComponentInfo
-
   require Membrane.Kino.JSUtils, as: JSUtils
+
+  alias Membrane.Kino.ComponentInfo
 
   @graph_js JSUtils.precompiled_asset("assets/precompiled/graph.js")
 
+  @spec new(pipeline :: pid, component_info: ComponentInfo.t()) :: Kino.Render.t()
   def new(pipeline, opts \\ []) do
     Kino.JS.Live.new(__MODULE__, {pipeline, opts})
   end
