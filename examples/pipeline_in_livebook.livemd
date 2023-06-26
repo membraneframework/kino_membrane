@@ -45,5 +45,5 @@ Membrane.Kino.pipeline_dashboard(pipeline)
 ```
 
 ```elixir
-Pipeline.terminate(pipeline)
+Membrane.Pipeline.terminate(pipeline)
 ```
