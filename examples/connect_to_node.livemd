@@ -23,7 +23,7 @@ elixir --sname sid --cookie monster -S mix phx.server
 Then, you can connect to the node with the following code:
 
 ```elixir
-# If the node is not running locally, provide the its hostname instead
+# If the node is not running locally, provide its hostname instead
 {:ok, hostname} = :inet.gethostname()
 node = :"sid@#{hostname}"
 Node.set_cookie(node, :monster)
