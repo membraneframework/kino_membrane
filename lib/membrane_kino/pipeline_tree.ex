@@ -30,7 +30,7 @@ defmodule Membrane.Kino.PipelineTree do
   @impl true
   def handle_connect(ctx) do
     component_info =
-      ctx.assigns.component_info || ComponentInfo.new(ctx.assigns.pipeline) |> tap(&Kino.render/1)
+      ctx.assigns.component_info || ComponentInfo.new(ctx.assigns.pipeline) |> Kino.render()
 
     Membrane.Core.Observer.subscribe(ctx.assigns.observer, graph: [entity: :component])
     {:ok, [], assign(ctx, component_info: component_info)}
