@@ -36,7 +36,7 @@ defmodule Membrane.Kino.PipelineGraph do
   @impl true
   def handle_connect(ctx) do
     component_info =
-      ctx.assigns.component_info || ComponentInfo.new(ctx.assigns.pipeline) |> tap(&Kino.render/1)
+      ctx.assigns.component_info || ComponentInfo.new(ctx.assigns.pipeline) |> Kino.render()
 
     ctx.assigns.pipeline
     |> Membrane.Core.Pipeline.get_observer()
