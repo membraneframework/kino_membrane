@@ -34,6 +34,26 @@ Membrane.Kino.pipeline_dashboard(pipeline)
 
 The pipeline can either be started within the Livebook (see [example](examples/pipeline_in_livebook.livemd)) or you can connect to a node where the pipeline is running (see [example](examples/connect_to_node.livemd)).
 
+## Development
+
+This package contains JavaScript subprojects. They are precompiled, so you only need to compile them if you change their code. In that case, run
+
+```sh
+mix setup # fetches JS and Elixir deps
+mix build # compiles JS and Elixir code
+```
+
+or compile each project manually
+
+```sh
+npm ci --prefix assets/tree_view
+npm run build --prefix assets/tree_view
+npm ci --prefix assets/graph
+npm run build --prefix assets/graph
+mix deps.get
+mix compile
+```
+
 ## Copyright and License
 
 Copyright 2020, [Software Mansion](https://swmansion.com/?utm_source=git&utm_medium=readme&utm_campaign=membrane_kino_dashboard)

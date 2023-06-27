@@ -1,5 +1,5 @@
 precompiled/bundle.js src package.json package-lock.json
 51c2282cbf39dca8c6ce3b84af1cf8009fcc9e81cc1d2676bc2030d3d61c3f01  precompiled/bundle.js
 dc0aa263c008b86d0a697bfdff7b7e6c3609d556e8229d287d8dd6416a238363  src/graph.js
-17c4a9b174bacb857c4e7be2226a945d98c0caf4789dfc15ee28c7b6248fea38  package.json
+e6f0852d03069ce8faf5b5c9ef7af584bcede5e0434a95c1577441928b10c08d  package.json
 729b0f1f7ce6ee70452c124814bc98802ee5f07a261114f707f4b0619fc2189f  package-lock.json

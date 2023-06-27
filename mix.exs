@@ -13,6 +13,22 @@ defmodule Membrane.Kino.Dashboard.Mixfile do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       dialyzer: dialyzer(),
+      aliases: [
+        setup: [
+          fn _args ->
+            Mix.shell().cmd("npm ci --prefix assets/graph && npm ci --prefix assets/tree_view")
+          end,
+          "deps.get"
+        ],
+        build: [
+          fn _args ->
+            Mix.shell().cmd(
+              "npm run build --prefix assets/graph && npm run build --prefix assets/tree_view"
+            )
+          end,
+          "compile"
+        ]
+      ],
 
       # hex
       description: "Dashboard for introspecting Membrane pipelines",
