@@ -19,12 +19,19 @@ defmodule Membrane.Kino.JSUtils do
   the following (or equivalent) script:
 
   ```sh
+  #!/usr/bin/env bash
   (echo $@ && find $@ -type f -print0 | xargs -0 sha256sum) > $1.fingerprint
   ```
 
   and passing to it:
     - the path to the generated asset as the first argument
     - all files/folders that contribute to generation of the asset
+
+  for example:
+
+  ```sh
+  calc_fingerprint.sh precompiled/bundle.js src package.json package-lock.json
+  ```
   """
   defmacro precompiled_asset(project_root, bundle_path) do
     bundle_path = path_expand_relative(bundle_path, project_root)
@@ -95,7 +102,7 @@ defmodule Membrane.Kino.JSUtils do
 
   @spec serialize_label(term) :: String.t()
   def serialize_label(label) do
-    label = if String.valid?(label), do: label, else: inspect(label)
+    label = if is_binary(label) and String.valid?(label), do: label, else: inspect(label)
     label = String.replace(label, ~w(" @ \ / < >), "")
 
     if String.length(label) > 30 do

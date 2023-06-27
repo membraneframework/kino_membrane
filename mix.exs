@@ -63,7 +63,11 @@ defmodule Membrane.Kino.Dashboard.Mixfile do
       links: %{
         "GitHub" => @github_url,
         "Membrane Framework Homepage" => "https://membraneframework.org"
-      }
+      },
+      files:
+        Path.wildcard("assets/*/{src,precompiled}/**") ++
+          Path.wildcard("assets/*/{package.json,package-lock.json}") ++
+          ~w(assets/calc_fingerprint.sh lib LICENSE mix.exs README.md .formatter.exs)
     ]
   end
 
@@ -74,7 +78,7 @@ defmodule Membrane.Kino.Dashboard.Mixfile do
       groups_for_extras: [Examples: ~r/examples\/*/],
       formatters: ["html"],
       source_ref: "v#{@version}",
-      nest_modules_by_prefix: [Membrane.Template]
+      nest_modules_by_prefix: [Membrane.Kino]
     ]
   end
 end

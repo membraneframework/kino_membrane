@@ -163,7 +163,7 @@ function globalPanning(cy, enabled) {
 // state/context changes finish.
 const scheduleForMainLoop = (fun) => setTimeout(fun, 5);
 
-export class MembraneGraph {
+export default class MembraneGraph {
 
   // Used for handling double taps and checking if expand/collapse
   // was triggered by user or programatically
@@ -184,9 +184,7 @@ export class MembraneGraph {
   awaitingAdd = [];
   awaitingRemove = [];
 
-  constructor({ container, onClick: _onClick }) {
-    const onClick = _onClick || (() => { });
-
+  constructor({ container, onClick }) {
     container.innerHTML = `
     <div style="width: 100%; height: 100%">
       <div class="menu-container" style="position: absolute;z-index: 1000;padding: 20px;">
@@ -234,7 +232,7 @@ export class MembraneGraph {
     cy.on('tap', (event) => {
       const target = event.target;
       if (target.isNode && target.isNode()) {
-        onClick(target.data());
+        onClick?.(target.data());
       }
       target.data("interaction", "tap");
       if (this.interactionTimeout) {
@@ -399,10 +397,10 @@ export class MembraneGraph {
     animation = animation instanceof Function ? animation() : animation;
     options = options || {};
     options.duration = options.duration || defaultAnimationDuration;
-    const complete = options.complete || (() => { });
+    const complete = options.complete;
     this.workInProgress = true;
     options.complete = (e) => {
-      complete();
+      complete?.();
       this.workInProgress = false;
       this._runAwaitingWork();
     }
@@ -428,5 +426,3 @@ export class MembraneGraph {
   }
 
 }
-
-window.MembraneGraph = MembraneGraph;

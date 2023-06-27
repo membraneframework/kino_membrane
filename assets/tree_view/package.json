@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "esbuild src/* --bundle --outfile=precompiled/bundle.js &&  ../calc_fingerprint.sh precompiled/bundle.js src package.json package-lock.json"
+    "build": "esbuild src/* --bundle --minify --sourcemap --format=esm --outfile=precompiled/bundle.js &&  ../calc_fingerprint.sh precompiled/bundle.js src package.json package-lock.json"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -13,7 +13,6 @@
     "esbuild": "0.17.11",
     "mui": "^0.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^5.0.4"
+    "react-dom": "^18.2.0"
   }
 }

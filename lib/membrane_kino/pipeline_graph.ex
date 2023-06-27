@@ -100,7 +100,7 @@ defmodule Membrane.Kino.PipelineGraph do
 
   asset "main.js" do
     """
-    import "./graph.js";
+    import MembranePipelineGraph from "./graph.js";
 
     export function init(ctx) {
       ctx.root.innerHTML = `
@@ -114,7 +114,7 @@ defmodule Membrane.Kino.PipelineGraph do
       }
       setGraphSize();
       window.addEventListener("resize", setGraphSize);
-      const mg = new MembraneGraph({container: graphContainer, onClick: (node) => {
+      const mg = new MembranePipelineGraph({container: graphContainer, onClick: (node) => {
           if (node.element) {
               ctx.pushEvent("component_selected", node.id)
             }
