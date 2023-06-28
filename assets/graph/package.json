@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "esbuild src/* --bundle --minify --sourcemap --format=esm --outfile=precompiled/bundle.js && ../calc_fingerprint.sh precompiled/bundle.js src package.json package-lock.json"
+    "build": "esbuild src/* --bundle --minify --sourcemap --format=esm --outdir=precompiled && ../calc_fingerprint.sh precompiled/*.js src package.json package-lock.json"
   },
   "dependencies": {
     "cytoscape-expand-collapse": "^4.1.0",

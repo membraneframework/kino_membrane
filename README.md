@@ -36,7 +36,7 @@ The pipeline can either be started within the Livebook (see [example](examples/p
 
 ## Development
 
-This package contains JavaScript subprojects. They are precompiled, so you only need to compile them if you change their code. In that case, run
+This package contains JavaScript subprojects. They are precompiled, so you only need to compile them if you change their code or need to generate source maps. In that case, run
 
 ```sh
 mix setup # fetches JS and Elixir deps

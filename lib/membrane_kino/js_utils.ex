@@ -20,53 +20,52 @@ defmodule Membrane.Kino.JSUtils do
 
   ```sh
   #!/usr/bin/env bash
-  (echo $@ && find $@ -type f -print0 | xargs -0 sha256sum) > $1.fingerprint
+  (echo $@ && find $@ -type f -print0 | xargs -0 sha256sum) > .fingerprint
   ```
 
   and passing to it:
-    - the path to the generated asset as the first argument
-    - all files/folders that contribute to generation of the asset
+    - a wildcard for the generated assets as the first argument
+    - wildcards for all files that contribute to generation of the assets
 
   for example:
 
   ```sh
-  calc_fingerprint.sh precompiled/bundle.js src package.json package-lock.json
+  calc_fingerprint.sh precompiled/*.js src package.json package-lock.json
   ```
   """
-  defmacro precompiled_asset(project_root, bundle_path) do
-    bundle_path = path_expand_relative(bundle_path, project_root)
+  defmacro precompiled_asset(project_root, bundle_wildcard) do
+    bundle_wildcard = path_expand_relative(bundle_wildcard, project_root)
 
     resource_attrs =
-      case verify_assets_checksums(project_root, bundle_path) do
+      case verify_assets_checksums(project_root, bundle_wildcard) do
         {:ok, external_resources} ->
           Enum.map(external_resources, &quote(do: @external_resource(unquote(&1))))
 
         {:error, diff} ->
           raise """
-          Asset \"#{bundle_path}\" is outdated and must be recompiled, because it relies on files that have changed:
+          Asset \"#{bundle_wildcard}\" is outdated and must be recompiled, because it relies on files that have changed:
           \t#{Enum.join(diff, ", ")}
           """
       end
 
     quote do
       (unquote_splicing(resource_attrs))
-      unquote(bundle_path)
+      :ok
     end
   end
 
-  defp verify_assets_checksums(project_root, bundle_path) do
+  defp verify_assets_checksums(project_root, bundle_wildcard) do
     [paths | files_shas] =
-      File.read!("#{bundle_path}.fingerprint")
+      File.read!("#{project_root}/.fingerprint")
       |> String.split("\n", trim: true)
 
     paths =
       paths
       |> String.split(" ")
       |> Enum.map(&path_expand_relative(&1, project_root))
+      # to make sure that the bundle is considered in the fingerprint
+      |> then(&[bundle_wildcard | &1])
       |> Enum.flat_map(&[&1 | Path.wildcard("#{&1}/**")])
-
-    # to make sure that the bundle is considered in the fingerprint
-    paths = [bundle_path | paths]
 
     files_shas =
       Map.new(files_shas, fn file_sha ->

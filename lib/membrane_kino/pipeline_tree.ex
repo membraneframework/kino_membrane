@@ -6,14 +6,14 @@ defmodule Membrane.Kino.PipelineTree do
   Clicking on an element reveals it in a component info view below the tree.
   """
 
-  use Kino.JS
+  use Kino.JS, assets_path: "assets/tree_view/precompiled"
   use Kino.JS.Live
 
   require Membrane.Kino.JSUtils, as: JSUtils
 
   alias Membrane.Kino.ComponentInfo
 
-  @tree_view_js JSUtils.precompiled_asset("assets/tree_view/", "precompiled/bundle.js")
+  JSUtils.precompiled_asset("assets/tree_view", "precompiled/*.js")
 
   @spec new(pipeline :: pid, component_info: ComponentInfo.t()) :: Kino.Render.t()
   def new(pipeline, opts \\ []) do
@@ -70,32 +70,5 @@ defmodule Membrane.Kino.PipelineTree do
 
   defp serialize_path(path) do
     path |> Enum.drop(1) |> Enum.map(&JSUtils.serialize_term/1)
-  end
-
-  asset "tree_view.js" do
-    File.read!(@tree_view_js)
-  end
-
-  asset "main.js" do
-    """
-    import MembranePipelineTree from "./tree_view.js";
-
-    export function init(ctx) {
-      ctx.root.innerHTML = `
-      <div id="treeContainer" style="width:calc(100% - 10px);padding-top:5px;padding-bottom:5px;border:1px solid black;border-radius:15px;min-height:50px;max-height:200px;overflow-x:clip;overflow-y:auto;"></div>
-      `
-      const tree = new MembranePipelineTree({
-        domNode: document.querySelector("#treeContainer"),
-        onClick: (node) => {
-          if (node.type == "element") {
-              ctx.pushEvent("component_selected", node.id)
-            }
-          }
-      });
-      ctx.handleEvent("update_tree", ([add, remove]) => {
-        tree.update(add, remove)
-      });
-    }
-    """
   end
 end
