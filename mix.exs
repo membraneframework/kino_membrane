@@ -14,20 +14,8 @@ defmodule Membrane.Kino.Dashboard.Mixfile do
       deps: deps(),
       dialyzer: dialyzer(),
       aliases: [
-        setup: [
-          fn _args ->
-            Mix.shell().cmd("npm ci --prefix assets/graph && npm ci --prefix assets/tree_view")
-          end,
-          "deps.get"
-        ],
-        build: [
-          fn _args ->
-            Mix.shell().cmd(
-              "npm run build --prefix assets/graph && npm run build --prefix assets/tree_view"
-            )
-          end,
-          "compile"
-        ]
+        setup: ["cmd npm ci --prefix assets", "deps.get"],
+        build: ["cmd npm run build --prefix assets", "compile"]
       ],
 
       # hex

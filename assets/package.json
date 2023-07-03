@@ -1,8 +1,10 @@
 {
   "scripts": {
-    "build": "esbuild src/* --bundle --minify --sourcemap --format=esm --outdir=precompiled &&  ../calc_fingerprint.sh precompiled/*.js src package.json package-lock.json"
+    "build": "esbuild src/*/main.js --bundle --minify --sourcemap --format=esm --outdir=precompiled && ./calc_fingerprint.sh precompiled/*/main.js src package.json package-lock.json"
   },
   "dependencies": {
+    "cytoscape-expand-collapse": "^4.1.0",
+    "cytoscape-fcose": "^2.2.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",

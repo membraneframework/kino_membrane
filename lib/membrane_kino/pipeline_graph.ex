@@ -13,14 +13,14 @@ defmodule Membrane.Kino.PipelineGraph do
     - Clicking the zoom (+) button of the Livebook cell extends the graph to cover full page width
 
   """
-  use Kino.JS, assets_path: "assets/graph/precompiled"
+  use Kino.JS, assets_path: "assets/precompiled/graph"
   use Kino.JS.Live
 
   require Membrane.Kino.JSUtils, as: JSUtils
 
   alias Membrane.Kino.ComponentInfo
 
-  JSUtils.precompiled_asset("assets/graph", "precompiled/*.js")
+  JSUtils.precompiled_asset("assets", "precompiled/graph/main.js")
 
   @spec new(pipeline :: pid, component_info: ComponentInfo.t()) :: Kino.Render.t()
   def new(pipeline, opts \\ []) do

@@ -6,14 +6,14 @@ defmodule Membrane.Kino.PipelineTree do
   Clicking on an element reveals it in a component info view below the tree.
   """
 
-  use Kino.JS, assets_path: "assets/tree_view/precompiled"
+  use Kino.JS, assets_path: "assets/precompiled/tree_view"
   use Kino.JS.Live
 
   require Membrane.Kino.JSUtils, as: JSUtils
 
   alias Membrane.Kino.ComponentInfo
 
-  JSUtils.precompiled_asset("assets/tree_view", "precompiled/*.js")
+  JSUtils.precompiled_asset("assets", "precompiled/tree_view/main.js")
 
   @spec new(pipeline :: pid, component_info: ComponentInfo.t()) :: Kino.Render.t()
   def new(pipeline, opts \\ []) do
