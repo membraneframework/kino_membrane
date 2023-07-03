@@ -2,7 +2,7 @@
 
 ```elixir
 Mix.install([
-  :membrane_kino_dashboard
+  :kino_membrane
 ])
 ```
 
@@ -40,7 +40,7 @@ Now you can show a dashboard for a pipeline running on the node. The snippet bel
 
 ```elixir
 case Membrane.Pipeline.list_pipelines(node) do
-  [pipeline | _pipelines] -> Membrane.Kino.pipeline_dashboard(pipeline)
+  [pipeline | _pipelines] -> KinoMembrane.pipeline_dashboard(pipeline)
   [] -> raise "No running pipelines found in the node #{inspect(node)}"
 end
 ```

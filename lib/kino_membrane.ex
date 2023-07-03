@@ -1,4 +1,4 @@
-defmodule Membrane.Kino do
+defmodule KinoMembrane do
   @moduledoc """
   Membrane Kino dashboard utilities.
   """
@@ -7,10 +7,10 @@ defmodule Membrane.Kino do
   defdelegate pipeline_tree(pipeline, opts \\ []), to: __MODULE__.PipelineTree, as: :new
 
   @doc """
-  Displays a pipeline dashboard, containing a `Membrane.Kino.PipelineGraph`
-  and `Membrane.Kino.PipelineTree`.
+  Displays a pipeline dashboard, containing a `KinoMembrane.PipelineGraph`
+  and `KinoMembrane.PipelineTree`.
 
-  Clicking on an element in the graph or tree opens `Membrane.Kino.ComponentInfo`
+  Clicking on an element in the graph or tree opens `KinoMembrane.ComponentInfo`
   displaying details & metrics for that element.
 
   For usage example, see Readme.

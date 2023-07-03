@@ -4,7 +4,7 @@
 Logger.configure(level: :info)
 
 Mix.install([
-  :membrane_kino_dashboard,
+  :kino_membrane,
   :membrane_hackney_plugin,
   :membrane_portaudio_plugin,
   :membrane_ffmpeg_swresample_plugin,
@@ -41,7 +41,7 @@ RCPipeline.exec_actions(pipeline,
 ```
 
 ```elixir
-Membrane.Kino.pipeline_dashboard(pipeline)
+KinoMembrane.pipeline_dashboard(pipeline)
 ```
 
 ```elixir

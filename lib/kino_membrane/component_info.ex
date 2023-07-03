@@ -1,10 +1,10 @@
-defmodule Membrane.Kino.ComponentInfo do
+defmodule KinoMembrane.ComponentInfo do
   @moduledoc """
   Kino that displays information about a Membrane component.
 
   It shows the component path, pads, charts with metrics and more -
-  better check it yourself by clicking an element on the `Membrane.Kino.PipelineGraph`
-  or `Membrane.Kino.PipelineTree`.
+  better check it yourself by clicking an element on the `KinoMembrane.PipelineGraph`
+  or `KinoMembrane.PipelineTree`.
 
   Currently it supports elements only.
   """
@@ -12,7 +12,7 @@ defmodule Membrane.Kino.ComponentInfo do
 
   require Membrane.Pad, as: Pad
 
-  alias Membrane.Kino.JSUtils
+  alias KinoMembrane.JSUtils
   alias VegaLite, as: Vl
 
   @nothing Kino.Markdown.new("")

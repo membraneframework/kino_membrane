@@ -1,12 +1,12 @@
-defmodule Membrane.Kino.Dashboard.Mixfile do
+defmodule KinoMembrane.Mixfile do
   use Mix.Project
 
   @version "0.1.0"
-  @github_url "https://github.com/membraneframework/membrane_kino_dashboard"
+  @github_url "https://github.com/membraneframework/kino_membrane"
 
   def project do
     [
-      app: :membrane_kino_dashboard,
+      app: :kino_membrane,
       version: @version,
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -82,7 +82,7 @@ defmodule Membrane.Kino.Dashboard.Mixfile do
       groups_for_extras: [Examples: ~r/examples\/*/],
       formatters: ["html"],
       source_ref: "v#{@version}",
-      nest_modules_by_prefix: [Membrane.Kino]
+      nest_modules_by_prefix: [KinoMembrane]
     ]
   end
 end

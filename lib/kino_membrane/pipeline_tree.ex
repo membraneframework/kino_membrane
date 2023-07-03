@@ -1,4 +1,4 @@
-defmodule Membrane.Kino.PipelineTree do
+defmodule KinoMembrane.PipelineTree do
   @moduledoc """
   Pipeline tree is a simple tree view that allows to explore a pipeline in a parent-child manner.
 
@@ -9,9 +9,9 @@ defmodule Membrane.Kino.PipelineTree do
   use Kino.JS, assets_path: "assets/precompiled/tree_view"
   use Kino.JS.Live
 
-  require Membrane.Kino.JSUtils, as: JSUtils
+  require KinoMembrane.JSUtils, as: JSUtils
 
-  alias Membrane.Kino.ComponentInfo
+  alias KinoMembrane.ComponentInfo
 
   JSUtils.precompiled_asset("assets", "precompiled/tree_view/main.js")
 

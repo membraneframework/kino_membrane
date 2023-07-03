@@ -1,4 +1,4 @@
-defmodule Membrane.Kino.JSUtils do
+defmodule KinoMembrane.JSUtils do
   @moduledoc false
 
   @doc """

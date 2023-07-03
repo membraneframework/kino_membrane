@@ -1,4 +1,4 @@
-defmodule Membrane.Kino.PipelineGraph do
+defmodule KinoMembrane.PipelineGraph do
   @moduledoc """
   Displays a graph of the given pipeline.
 
@@ -16,9 +16,9 @@ defmodule Membrane.Kino.PipelineGraph do
   use Kino.JS, assets_path: "assets/precompiled/graph"
   use Kino.JS.Live
 
-  require Membrane.Kino.JSUtils, as: JSUtils
+  require KinoMembrane.JSUtils, as: JSUtils
 
-  alias Membrane.Kino.ComponentInfo
+  alias KinoMembrane.ComponentInfo
 
   JSUtils.precompiled_asset("assets", "precompiled/graph/main.js")
 
