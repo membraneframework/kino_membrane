@@ -4,7 +4,7 @@
 [![API Docs](https://img.shields.io/badge/api-docs-yellow.svg?style=flat)](https://hexdocs.pm/kino_membrane)
 [![CircleCI](https://circleci.com/gh/membraneframework/kino_membrane.svg?style=svg)](https://circleci.com/gh/membraneframework/kino_membrane)
 
-Dashboard for introspecting [Membrane](https://membraneframework.org) pipelines. Can be used via [Livebook](https://livebook.dev/).
+Dashboard for introspecting [Membrane](https://membrane.stream) pipelines. Can be used via [Livebook](https://livebook.dev/).
 
 ## Installation
 
