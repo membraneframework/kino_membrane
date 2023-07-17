@@ -1,0 +1,50 @@
+# Pipeline in livebook - dashboard example
+
+```elixir
+Logger.configure(level: :info)
+
+Mix.install([
+  :kino_membrane,
+  :membrane_hackney_plugin,
+  :membrane_portaudio_plugin,
+  :membrane_ffmpeg_swresample_plugin,
+  :membrane_mp3_mad_plugin
+])
+```
+
+## Dashboard
+
+```elixir
+import Membrane.ChildrenSpec
+alias Membrane.RCPipeline
+
+pipeline = RCPipeline.start_link!()
+
+RCPipeline.exec_actions(pipeline,
+  spec:
+    child(:hackney, %Membrane.Hackney.Source{
+      location:
+        "https://raw.githubusercontent.com/membraneframework/membrane_demo/master/simple_pipeline/sample.mp3",
+      hackney_opts: [follow_redirect: true]
+    })
+    |> via_in(:input, auto_demand_size: 10)
+    |> child(:decoder, Membrane.MP3.MAD.Decoder)
+    |> child(:converter, %Membrane.FFmpeg.SWResample.Converter{
+      output_stream_format: %Membrane.RawAudio{
+        sample_format: :s16le,
+        sample_rate: 48000,
+        channels: 2
+      }
+    })
+    |> child(:portaudio, Membrane.PortAudio.Sink),
+  playback: :playing
+)
+```
+
+```elixir
+KinoMembrane.pipeline_dashboard(pipeline)
+```
+
+```elixir
+Membrane.Pipeline.terminate(pipeline)
+```

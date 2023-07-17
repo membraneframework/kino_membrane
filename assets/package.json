@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "build": "esbuild src/*/main.js --bundle --minify --sourcemap --format=esm --outdir=precompiled && ./calc_fingerprint.sh precompiled/*/main.js src package.json package-lock.json"
+  },
+  "dependencies": {
+    "cytoscape-expand-collapse": "^4.1.0",
+    "cytoscape-fcose": "^2.2.0",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/lab": "^5.0.0-alpha.130",
+    "@mui/material": "^5.13.1",
+    "mui": "^0.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.17.11"
+  }
+}
