@@ -8,7 +8,7 @@ Mix.install([
   :membrane_hackney_plugin,
   :membrane_portaudio_plugin,
   :membrane_ffmpeg_swresample_plugin,
-  :membrane_mp3_mad_plugin,
+  :membrane_mp3_mad_plugin
 ])
 ```
 
@@ -27,6 +27,7 @@ RCPipeline.exec_actions(pipeline,
         "https://raw.githubusercontent.com/membraneframework/membrane_demo/master/simple_pipeline/sample.mp3",
       hackney_opts: [follow_redirect: true]
     })
+    |> via_in(:input, auto_demand_size: 10)
     |> child(:decoder, Membrane.MP3.MAD.Decoder)
     |> child(:converter, %Membrane.FFmpeg.SWResample.Converter{
       output_stream_format: %Membrane.RawAudio{

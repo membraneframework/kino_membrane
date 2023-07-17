@@ -42,7 +42,7 @@ defmodule KinoMembrane.ComponentInfo do
 
   @impl true
   def init({frame, pipeline}) do
-    observer = Membrane.Core.Pipeline.get_observer(pipeline)
+    stalker = Membrane.Core.Pipeline.get_stalker(pipeline)
 
     component_frame = empty_frame()
     charts_container = empty_frame()
@@ -58,7 +58,7 @@ defmodule KinoMembrane.ComponentInfo do
        charts_container: charts_container,
        charts: %{},
        charts_frames: %{},
-       observer: observer
+       stalker: stalker
      }}
   end
 
@@ -115,8 +115,8 @@ defmodule KinoMembrane.ComponentInfo do
   @impl true
   def handle_info({:set_component, path}, state) do
     if path != state.chosen_component do
-      Membrane.Core.Observer.subscribe(
-        state.observer,
+      Membrane.Core.Stalker.subscribe(
+        state.stalker,
         [metrics: [path: path], graph: [path: path]],
         confirm: path
       )
@@ -197,7 +197,6 @@ defmodule KinoMembrane.ComponentInfo do
   defp create_chart({metric, _path, _metric_id}) do
     Vl.new(width: 350, height: 300, title: "#{metric}")
     |> Vl.mark(:line, point: true)
-    # |> Vl.param("grid", select: :interval, bind: :scales)
     |> Vl.encode_field(:x, "x", title: "Time [s]", type: :temporal)
     |> Vl.encode_field(:y, "y",
       title: "",
@@ -205,7 +204,6 @@ defmodule KinoMembrane.ComponentInfo do
       scale: %{zero: false},
       axis: %{format: "s"}
     )
-    # |> Vl.data_from_values(values)
     |> Kino.VegaLite.new()
   end
 

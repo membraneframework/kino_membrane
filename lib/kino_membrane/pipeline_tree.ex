@@ -23,8 +23,8 @@ defmodule KinoMembrane.PipelineTree do
   @impl true
   def init({pipeline, opts}, ctx) do
     opts = Keyword.validate!(opts, component_info: nil)
-    observer = Membrane.Core.Pipeline.get_observer(pipeline)
-    {:ok, assign(ctx, [pipeline: pipeline, observer: observer] ++ opts)}
+    stalker = Membrane.Core.Pipeline.get_stalker(pipeline)
+    {:ok, assign(ctx, [pipeline: pipeline, stalker: stalker] ++ opts)}
   end
 
   @impl true
@@ -32,7 +32,7 @@ defmodule KinoMembrane.PipelineTree do
     component_info =
       ctx.assigns.component_info || ComponentInfo.new(ctx.assigns.pipeline) |> Kino.render()
 
-    Membrane.Core.Observer.subscribe(ctx.assigns.observer, graph: [entity: :component])
+    Membrane.Core.Stalker.subscribe(ctx.assigns.stalker, graph: [entity: :component])
     {:ok, [], assign(ctx, component_info: component_info)}
   end
 

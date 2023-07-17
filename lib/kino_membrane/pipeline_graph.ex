@@ -39,8 +39,8 @@ defmodule KinoMembrane.PipelineGraph do
       ctx.assigns.component_info || ComponentInfo.new(ctx.assigns.pipeline) |> Kino.render()
 
     ctx.assigns.pipeline
-    |> Membrane.Core.Pipeline.get_observer()
-    |> Membrane.Core.Observer.subscribe([:graph])
+    |> Membrane.Core.Pipeline.get_stalker()
+    |> Membrane.Core.Stalker.subscribe([:graph])
 
     {:ok, [], assign(ctx, component_info: component_info)}
   end
