@@ -44,6 +44,7 @@ defmodule KinoMembrane.Mixfile do
       {:kino, "~> 0.9.4"},
       {:kino_vega_lite, "~> 0.1.9"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      # {:ex_doc, path: "../ex_doc"},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, ">= 0.0.0", only: :dev, runtime: false}
     ]
