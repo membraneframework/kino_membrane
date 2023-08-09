@@ -19,11 +19,11 @@ defmodule KinoMembrane.Mixfile do
       ],
 
       # hex
-      description: "Dashboard for introspecting Membrane pipelines",
+      description: "Utilities for introspecting Membrane pipelines in Livebook",
       package: package(),
 
       # docs
-      name: "Membrane Kino dashboard",
+      name: "Kino Membrane",
       source_url: @github_url,
       docs: docs()
     ]

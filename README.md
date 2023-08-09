@@ -1,10 +1,10 @@
-# Membrane Kino Dashboard
+# Kino Membrane
 
 [![Hex.pm](https://img.shields.io/hexpm/v/kino_membrane.svg)](https://hex.pm/packages/kino_membrane)
 [![API Docs](https://img.shields.io/badge/api-docs-yellow.svg?style=flat)](https://hexdocs.pm/kino_membrane)
 [![CircleCI](https://circleci.com/gh/membraneframework/kino_membrane.svg?style=svg)](https://circleci.com/gh/membraneframework/kino_membrane)
 
-Dashboard for introspecting [Membrane](https://membrane.stream) pipelines. Can be used via [Livebook](https://livebook.dev/).
+Utilities for introspecting [Membrane](https://membrane.stream) pipelines in [Livebook](https://livebook.dev/).
 
 ## Installation
 
@@ -26,7 +26,7 @@ Mix.install([:kino_membrane])
 
 ## Usage
 
-To run the dashboard, install `:kino_membrane` as described above, and type the following in a [Livebook](https://livebook.dev/) cell:
+To run the pipeline dashboard, install `:kino_membrane` as described above, and type the following in a [Livebook](https://livebook.dev/) cell:
 
 ```elixir
 KinoMembrane.pipeline_dashboard(pipeline)
