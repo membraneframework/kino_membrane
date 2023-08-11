@@ -6,6 +6,9 @@
 
 Utilities for introspecting [Membrane](https://membrane.stream) pipelines in [Livebook](https://livebook.dev/).
 
+![kino_membrane](https://github.com/membraneframework/kino_membrane/assets/16493463/8606e631-a851-4234-93b9-db8eeb3cdfe4)
+
+
 ## Installation
 
 The package can be installed by adding `kino_membrane` to your list of dependencies in `mix.exs`:
