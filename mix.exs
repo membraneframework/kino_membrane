@@ -1,7 +1,7 @@
 defmodule KinoMembrane.Mixfile do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.2.0"
   @github_url "https://github.com/membraneframework/kino_membrane"
 
   def project do
@@ -40,7 +40,7 @@ defmodule KinoMembrane.Mixfile do
 
   defp deps do
     [
-      {:membrane_core, "~> 0.12.6"},
+      {:membrane_core, "~> 1.0"},
       {:kino, "~> 0.9.4"},
       {:kino_vega_lite, "~> 0.1.9"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
