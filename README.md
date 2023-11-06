@@ -16,7 +16,7 @@ The package can be installed by adding `kino_membrane` to your list of dependenc
 ```elixir
 def deps do
   [
-    {:kino_membrane, "~> 0.1.0"}
+	{:kino_membrane, "~> 0.2.0"}
   ]
 end
 ```
