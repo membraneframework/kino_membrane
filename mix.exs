@@ -1,7 +1,7 @@
 defmodule KinoMembrane.Mixfile do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "0.3.1"
   @github_url "https://github.com/membraneframework/kino_membrane"
 
   def project do
@@ -43,7 +43,7 @@ defmodule KinoMembrane.Mixfile do
       {:membrane_core, "~> 1.0"},
       {:kino, "~> 0.13.2"},
       {:kino_vega_lite, "~> 0.1.9"},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.40", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, ">= 0.0.0", only: :dev, runtime: false}
     ]
@@ -85,7 +85,6 @@ defmodule KinoMembrane.Mixfile do
       main: "readme",
       extras: ["README.md", "LICENSE"] ++ Path.wildcard("examples/**"),
       groups_for_extras: [Examples: ~r/examples\/*/],
-      formatters: ["html"],
       source_ref: "v#{@version}",
       nest_modules_by_prefix: [KinoMembrane]
     ]
