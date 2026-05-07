@@ -43,16 +43,15 @@ defmodule KinoMembrane.Mixfile do
       {:membrane_core, "~> 1.0"},
       {:kino, "~> 0.13.2"},
       {:kino_vega_lite, "~> 0.1.9"},
-      {:ex_doc, "~> 0.34", only: :dev, runtime: false},
-      {:dialyxir, "~> 1.4", only: :dev, runtime: false},
-      {:credo, "~> 1.7", only: :dev, runtime: false}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
+      {:credo, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 
   defp dialyzer() do
     opts = [
       flags: [:error_handling],
-      plt_add_apps: [:mix, :syntax_tools],
       ignore_warnings: ".dialyzer_ignore.exs"
     ]
 
