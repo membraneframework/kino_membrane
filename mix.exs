@@ -1,7 +1,7 @@
 defmodule KinoMembrane.Mixfile do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "0.3.1"
   @github_url "https://github.com/membraneframework/kino_membrane"
 
   def project do
@@ -15,7 +15,8 @@ defmodule KinoMembrane.Mixfile do
       dialyzer: dialyzer(),
       aliases: [
         setup: ["cmd npm ci --prefix assets", "deps.get"],
-        build: ["cmd npm run build --prefix assets", "compile"]
+        build: ["cmd npm run build --prefix assets", "compile"],
+        docs: ["docs", &append_llms_links/1]
       ],
 
       # hex
@@ -43,7 +44,7 @@ defmodule KinoMembrane.Mixfile do
       {:membrane_core, "~> 1.0"},
       {:kino, "~> 0.13.2"},
       {:kino_vega_lite, "~> 0.1.9"},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:ex_doc, ">= 0.40.0", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, ">= 0.0.0", only: :dev, runtime: false}
     ]
@@ -87,9 +88,30 @@ defmodule KinoMembrane.Mixfile do
       main: "readme",
       extras: ["README.md", "LICENSE"] ++ Path.wildcard("examples/**"),
       groups_for_extras: [Examples: ~r/examples\/*/],
-      formatters: ["html"],
       source_ref: "v#{@version}",
       nest_modules_by_prefix: [KinoMembrane]
     ]
+  end
+
+  defp append_llms_links(_args) do
+    output_dir = docs()[:output] || "doc"
+    path = Path.join(output_dir, "llms.txt")
+
+    if File.exists?(path) do
+      existing = File.read!(path)
+
+      footer = """
+
+
+      ## See Also
+
+      - [Membrane Framework AI Skill](https://hexdocs.pm/membrane_core/skill.md)
+      - [Membrane Core](https://hexdocs.pm/membrane_core/llms.txt)
+      """
+
+      File.write!(path, String.trim_trailing(existing) <> footer)
+    else
+      IO.warn("#{path} not found — llms.txt was not generated, check your ex_doc configuration")
+    end
   end
 end
