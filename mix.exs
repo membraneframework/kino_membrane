@@ -16,7 +16,7 @@ defmodule KinoMembrane.Mixfile do
       aliases: [
         setup: ["cmd npm ci --prefix assets", "deps.get"],
         build: ["cmd npm run build --prefix assets", "compile"],
-        docs: ["docs", &prepend_llms_links/1]
+        docs: ["docs", &append_llms_links/1]
       ],
 
       # hex
@@ -93,7 +93,7 @@ defmodule KinoMembrane.Mixfile do
     ]
   end
 
-  defp prepend_llms_links(_) do
+  defp append_llms_links(_args) do
     output_dir = docs()[:output] || "doc"
     path = Path.join(output_dir, "llms.txt")
 
